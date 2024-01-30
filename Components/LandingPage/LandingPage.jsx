@@ -2,13 +2,16 @@ import { View, StyleSheet } from "react-native";
 import { Divider, IconButton, Surface, Text } from "react-native-paper";
 
 import { theme } from "../../Config";
+import NewList from "../NewList";
+import { useState } from "react";
 
 const lists = [{ title: "list's name" }];
 
 const LandingPage = () => {
-  const addListHandler = () => {
-    console.log("create new list");
-  };
+  const [openModal, setOpenModal] = useState(false);
+
+  const closeModal = () => setOpenModal(false);
+  const addListHandler = () => setOpenModal(true);
 
   return (
     <>
@@ -45,6 +48,7 @@ const LandingPage = () => {
         />
       </Surface>
       <View style={styles.bottomView}></View>
+      {openModal && <NewList closeModal={closeModal} />}
     </>
   );
 };
