@@ -25,7 +25,7 @@ const LandingPage = () => {
         <Divider />
         {lists.map((list, i) => {
           return (
-            <>
+            <View key={list.title}>
               <Text
                 key={list.title}
                 style={styles.listElement}
@@ -36,7 +36,7 @@ const LandingPage = () => {
                 {`${i + 1}. ${list.title}`}
               </Text>
               <Divider />
-            </>
+            </View>
           );
         })}
         <IconButton
@@ -47,7 +47,7 @@ const LandingPage = () => {
           onPress={addListHandler}
         />
       </Surface>
-      <View style={styles.bottomView}></View>
+      {/* <View style={styles.bottomView}></View> */}
       {openModal && <NewList closeModal={closeModal} />}
     </>
   );
@@ -55,8 +55,13 @@ const LandingPage = () => {
 
 const styles = StyleSheet.create({
   topView: { flex: 0.2 },
-  middleView: { flex: 0.8, width: "80%", borderRadius: 10 },
-  bottomView: { flex: 0.1 },
+  middleView: {
+    flex: 0.8,
+    width: "100%",
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+  },
+  // bottomView: { flex: 0.1 },
   listsText: {
     textAlign: "center",
     marginBottom: 20,
