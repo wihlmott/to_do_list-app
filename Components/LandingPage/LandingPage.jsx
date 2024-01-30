@@ -4,6 +4,7 @@ import { Divider, IconButton, Surface, Text } from "react-native-paper";
 import { theme } from "../../Config";
 
 const lists = [{ title: "list's name" }];
+const USER = { name: "USER", email: "email.com" };
 
 const LandingPage = () => {
   const addListHandler = () => {
@@ -13,7 +14,7 @@ const LandingPage = () => {
   return (
     <>
       <View style={styles.topView}>
-        <Text>text</Text>
+        <Text>Welcome {USER.name}</Text>
       </View>
       <Surface style={styles.middleView}>
         <Text variant="headlineMedium" style={styles.listsText}>
@@ -22,9 +23,8 @@ const LandingPage = () => {
         <Divider />
         {lists.map((list, i) => {
           return (
-            <>
+            <View key={list.title}>
               <Text
-                key={list.title}
                 style={styles.listElement}
                 onPress={() => {
                   console.log(list.title);
@@ -33,7 +33,7 @@ const LandingPage = () => {
                 {`${i + 1}. ${list.title}`}
               </Text>
               <Divider />
-            </>
+            </View>
           );
         })}
         <IconButton
@@ -51,8 +51,13 @@ const LandingPage = () => {
 
 const styles = StyleSheet.create({
   topView: { flex: 0.2 },
-  middleView: { flex: 0.8, width: "80%", borderRadius: 10 },
-  bottomView: { flex: 0.1 },
+  middleView: {
+    flex: 0.8,
+    width: "100%",
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+  },
+  // bottomView: { flex: 0.1 },
   listsText: {
     textAlign: "center",
     marginBottom: 20,
